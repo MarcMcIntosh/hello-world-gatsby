@@ -1,3 +1,6 @@
 import React from "react"
 
-export default () => <div>Hello world!</div>
+export default (...props) => {
+    console.log(props);
+    return (<div>Hello world!</div>)
+}
