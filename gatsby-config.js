@@ -48,6 +48,7 @@ module.exports = {
             case "homepage": return '/';
             case "about": return "/about";
             case "contact": return "/contact";
+            case "blog_post": return `/blog/${doc.uid}`;
             default: return "/";
           }
           
@@ -84,7 +85,8 @@ module.exports = {
           // Your custom types mapped to schemas
           homepage: require("./src/schemas/homepage.json"),
           about: require('./src/schemas/about.json'),
-          contact: require("./src/schemas/contact.json")
+          contact: require("./src/schemas/contact.json"),
+          blog_post: require("./src/schemas/blog_post.json")
         },
   
         // Set a default language when fetching documents. The default value is
