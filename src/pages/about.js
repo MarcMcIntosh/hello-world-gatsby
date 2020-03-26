@@ -24,13 +24,21 @@ export const query = graphql`
   
 `;
 
-export default ({ data }) => {
-    const title = `About ${data.site.siteMetadata.title}`;
+export default (props) => {
+  console.log("about.js");
+  console.log({ props });
+  const staticData = props.data;
+
+  console.log("prismicAcount: Static", staticData.prismicAbout);
+
+  const title = `About ${staticData.site.siteMetadata.title}`;
+  const { prismicAbout } = (window && window.__PRISMIC_PREVIEW_DATA__ && window.__PRISMIC_PREVIEW_DATA__.prismicAbout) ? window.__PRISMIC_PREVIEW_DATA__ : staticData;
+  console.log(prismicAbout);
     return (
         <Layout>
             <Header headerText={title} />
             {/* Fix: this later  with html serilzer*/}
-            <div dangerouslySetInnerHTML={{__html: data.prismicAbout.data.richtext.html}} />
+            <div dangerouslySetInnerHTML={{__html: prismicAbout.data.richtext.html}} />
         </Layout>
     );
 }
