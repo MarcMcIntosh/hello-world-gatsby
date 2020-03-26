@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
 import { usePrismicPreview } from 'gatsby-source-prismic'
+import { linkResolver } from '../prismic';
 
 const REPO_NAME = "gatsby-hello";
 const PreviewPage = () => {
     const { isPreview, previewData, path } = usePrismicPreview({
         // The repositoryName value from your `gatsby-config.js`.
         repositoryName: REPO_NAME,
+        linkResolver,
     });
+    console.log("preview.js")
+    console.log({ isPreview, previewData, path });
 
     // This useEffect runs when values from usePrismicPreview update. When
     // preview data is available, this will save the data globally and redirect to

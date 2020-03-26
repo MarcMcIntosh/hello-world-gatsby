@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+ const linkResolver = require("./src/prismic/linkResolver");
+
 module.exports = {
   /* Your site config here */
   siteMetadata: {
@@ -42,17 +44,7 @@ module.exports = {
         // provided to the function, as seen below. This allows you to use
         // different link resolver logic for each field if necessary.
         // See: https://prismic.io/docs/javascript/query-the-api/link-resolving
-        linkResolver: ({ node, key, value }) => doc => {
-          // Your link resolver
-          switch(doc.type) {
-            case "homepage": return '/';
-            case "about": return "/about";
-            case "contact": return "/contact";
-            case "blog_post": return `/blog/${doc.uid}`;
-            default: return "/";
-          }
-          
-        },
+        linkResolver,
   
         // Set a list of links to fetch and be made available in your link
         // resolver function.
