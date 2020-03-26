@@ -6,7 +6,17 @@
 
 module.exports = {
   /* Your site config here */
+  siteMetadata: {
+    title: "Prismic ++ Gatsby",
+  },
   plugins: [
+    `gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
     /*
      * Gatsby's data processing layer begins with “source”
      * plugins. Here the site sources its data from prismic.io.
@@ -34,7 +44,13 @@ module.exports = {
         // See: https://prismic.io/docs/javascript/query-the-api/link-resolving
         linkResolver: ({ node, key, value }) => doc => {
           // Your link resolver
-          return "/"
+          switch(doc.type) {
+            case "homepage": return '/';
+            case "about": return "/about";
+            case "contact": return "/contact";
+            default: return "/";
+          }
+          
         },
   
         // Set a list of links to fetch and be made available in your link
@@ -58,6 +74,7 @@ module.exports = {
           children,
         ) => {
           // Your HTML serializer
+          console.log({ node, key, value, type, element, content, children });
           return null;
         },
   
@@ -65,7 +82,9 @@ module.exports = {
         // Gatsby. This is required.
         schemas: {
           // Your custom types mapped to schemas
-          homepage: require("./src/schemas/homepage.json")
+          homepage: require("./src/schemas/homepage.json"),
+          about: require('./src/schemas/about.json'),
+          contact: require("./src/schemas/contact.json")
         },
   
         // Set a default language when fetching documents. The default value is

@@ -1,12 +1,27 @@
 import React from "react"
-import { Link } from "gatsby"
 import Header from "../components/header"
 import Layout from "../components/layout"
+import { graphql } from 'gatsby'
 
-export default () => (
+export const query = graphql`query {
+    prismicContact {
+        id
+        data {
+            title {
+                html
+                text
+                raw
+            }
+        }
+    }
+}`
+
+
+export default ({ data }) => (
     <Layout>
-        <Link to="/">Home</Link>
-        <Header headerText="Contact" />
+        <Header headerText={data.prismicContact.data.title.text} />
+        
         <p>Send us a message!</p>
+        <b>{/*Slices don't work?*/}</b>
     </Layout>
 )
