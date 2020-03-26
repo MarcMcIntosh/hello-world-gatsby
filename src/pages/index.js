@@ -1,6 +1,7 @@
 import React, { useMemo } from "react"
 import { graphql } from 'gatsby';
 import { mergePrismicPreviewData } from 'gatsby-source-prismic'
+import Layout from "../components/layout"
 
 // Returns true if we're in a browser, false otherwise. This will help guard
 // against SSR issues when building the site.
@@ -41,5 +42,14 @@ export default ({ data: staticData, ...props}) => {
     }, [staticData])
     console.log("index.jsx");
     console.log({ data });
-        return (<div>{data.title.text} From prismic</div>)
+
+    return (
+        <Layout>
+            <Link to="/contact/">Contact</Link>
+            <Header headerText="Hello Gatsby!" />
+            <div>{data.title.text} From prismic</div>
+            <p>What a world.</p>
+            <img src="https://source.unsplash.com/random/400x200" alt="" />
+        </Layout>
+    )
 }
