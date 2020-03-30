@@ -20,7 +20,7 @@ export const query = graphql`
 `
 
 const BlogPost = ({ data: staticData, ...props }) => {
-    const { prismicBlogPost: { data } } = (window && window.__PRISMIC_PREVIEW_DATA__) ? window.__PRISMIC_PREVIEW_DATA__ : staticData
+    const { prismicBlogPost: { data } } = (typeof window !== "undefined" && window.__PRISMIC_PREVIEW_DATA__) ? window.__PRISMIC_PREVIEW_DATA__ : staticData
 
     return (
         <Layout>
