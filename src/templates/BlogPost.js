@@ -20,11 +20,8 @@ export const query = graphql`
 `
 
 const BlogPost = ({ data: staticData, ...props }) => {
-    console.log("BlogPost.js")
-    console.log({data, ...props});
     const { prismicBlogPost: { data } } = (window && window.__PRISMIC_PREVIEW_DATA__) ? window.__PRISMIC_PREVIEW_DATA__ : staticData
 
-    
     return (
         <Layout>
             <RichText render={data.ritchtext.raw} />

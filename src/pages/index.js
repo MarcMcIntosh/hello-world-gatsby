@@ -15,9 +15,16 @@ export const query = graphql`{
           title {
             html
             text
-            raw
           }
         }
+    }
+    allPrismicBlogPost {
+      edges {
+        node {
+          id
+          url
+        }
+      }
     }
 }`;
 
@@ -25,19 +32,14 @@ export default ({ data: staticData, ...props}) => {
     const data = useMemo(() => {
         // If we're not in a browser (i.e. we're in SSR) or preview data has not been
         // set, use the non-preview static data.
-        console.log("useMemo")
-        console.log(window.__PRISMIC_PREVIEW_DATA__);
-        console.log(staticData);
         if (!IS_BROWSER || !window.__PRISMIC_PREVIEW_DATA__) return staticData.prismicHomepage.data
         console.log("We have a preview")
-    
+
         return mergePrismicPreviewData({
           staticData: staticData.prismicHomepage.data,
           previewData: window.__PRISMIC_PREVIEW_DATA__.prismicHomepage.data
         })
     }, [staticData])
-    console.log("index.jsx");
-    console.log({ data });
 
     return (
         <Layout>
@@ -46,6 +48,14 @@ export default ({ data: staticData, ...props}) => {
             <div>{data.title.text} From prismic</div>
             <p>What a world.</p>
             <img src="https://source.unsplash.com/random/400x200" alt="" />
+            <div>
+              <h2>Blog</h2>
+              <ul>
+              { staticData.allPrismicBlogPost.edges.map(e =>
+                <li key={e.node.id}><a href={e.node.url}>{e.node.url}</a></li>
+              )}
+              </ul>
+            </div>
         </Layout>
     )
 }
