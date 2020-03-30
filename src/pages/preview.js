@@ -27,7 +27,8 @@ const PreviewPage = () => {
         // something like a global Redux store or React context.
         //
         // We'll just put it on window.
-        window.__PRISMIC_PREVIEW_DATA__ = previewData
+        // Object.assign(window.__PRISMIC_PREVIEW_DATA__, previewData, {})
+        window.__PRISMIC_PREVIEW_DATA__ = { ...window.__PRISMIC_PREVIEW_DATA__, ...previewData }
         console.log("preview pages")
         console.log({ previewData });
 
