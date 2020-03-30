@@ -29,10 +29,11 @@ export const query = graphql`{
 }`;
 
 export default ({ data: staticData, ...props}) => {
+    /* this can break */
     const data = useMemo(() => {
         // If we're not in a browser (i.e. we're in SSR) or preview data has not been
         // set, use the non-preview static data.
-        if (!IS_BROWSER || !window.__PRISMIC_PREVIEW_DATA__) return staticData.prismicHomepage.data
+        if (!IS_BROWSER || !window.__PRISMIC_PREVIEW_DATA__ || !window.__PRISMIC_PREVIEW_DATA__.prismicHomepage) return staticData.prismicHomepage.data
         console.log("We have a preview")
 
         return mergePrismicPreviewData({
