@@ -80,7 +80,8 @@ module.exports = {
           homepage: require("./src/schemas/homepage.json"),
           about: require('./src/schemas/about.json'),
           contact: require("./src/schemas/contact.json"),
-          blog_post: require("./src/schemas/blog_post.json")
+          blog_post: require("./src/schemas/blog_post.json"),
+          footer: require("./src/schemas/footer.json"),
         },
 
         // Set a default language when fetching documents. The default value is
