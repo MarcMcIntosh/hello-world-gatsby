@@ -31,6 +31,7 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {
           id: node.id,
         },
+        matchPath: '/blog/*'
       })
     })
   }
