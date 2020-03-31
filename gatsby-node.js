@@ -3,7 +3,7 @@ const path = require('path');
 
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
-  
+
     // Query all Pages with their IDs and template data.
     const pages = await graphql(`
       {
@@ -15,12 +15,12 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     `)
-  
+
     /* const pageTemplates = {
       Light: path.resolve(__dirname, 'src/templates/light.js'),
       Dark: path.resolve(__dirname, 'src/templates/dark.js'),
     } */
-  
+
     // Create pages for each Page in Prismic using the selected template.
     // console.log(JSON.stringify(pages, null, ' '));
     pages.data.allPrismicBlogPost.nodes.forEach(node => {
@@ -31,7 +31,6 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {
           id: node.id,
         },
-        matchPath: '/blog/*'
       })
     })
   }
