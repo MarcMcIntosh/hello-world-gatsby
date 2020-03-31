@@ -24,12 +24,11 @@ exports.createPages = async ({ graphql, actions }) => {
     // Create pages for each Page in Prismic using the selected template.
     // console.log(JSON.stringify(pages, null, ' '));
     pages.data.allPrismicBlogPost.nodes.forEach(node => {
-        console.log(JSON.stringify(node, null, " "))
       createPage({
         path: `/blog/${node.uid}`,
         component: path.resolve(__dirname, 'src/templates/BlogPost.js'),
         context: {
-          id: node.id,
+          uid: node.uid,
         },
       })
     })
