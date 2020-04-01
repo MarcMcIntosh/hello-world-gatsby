@@ -27,11 +27,13 @@ export default (props) => {
             }
         }
     }`);
-    console.log("footer");
+    // console.log("footer");
 
     const { data } = (typeof window !== "undefined" && window.__PRISMIC_PREVIEW_DATA__ && window.__PRISMIC_PREVIEW_DATA__.prismicFooter) ? { ...staticData.prismicFooter, ...window.__PRISMIC_PREVIEW_DATA__.prismicFooter } : staticData.prismicFooter;
 
-    console.log({ staticData, data });
+    // const isPreview = (window !== "undefined" && window.__PRISMIC_PREVIEW_DATA__ && window.__PRISMIC_PREVIEW_DATA__.prismicFooter);
+
+    // console.log({ staticData, data });
 
     return (<footer>
         <p>Footer</p>
