@@ -24,7 +24,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     // Create pages for each Page in Prismic using the selected template.
     pages.data.allPrismicBlogPost.nodes.forEach(node => {
-      const prefix = node.lang === "en-gb" ? "" : "/" + node.lang; 
+      const prefix = node.lang === "en-gb" ? "" : "/" + node.lang;
       createPage({
         path: `${prefix}/blog/${node.uid}`,
         component: path.resolve(__dirname, 'src/templates/BlogPost.js'),
@@ -32,8 +32,6 @@ exports.createPages = async ({ graphql, actions }) => {
           id: node.id,
           lang: node.lang,
           uid: node.uid,
-        },
-        matchPath: `${prefix}/blog/*`
         },
       })
     })
