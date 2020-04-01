@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby';
 import { mergePrismicPreviewData } from 'gatsby-source-prismic'
 import Layout from "../components/layout"
 import Header from '../components/header'
+import { RichText } from "prismic-reactjs";
 
 // Returns true if we're in a browser, false otherwise. This will help guard
 // against SSR issues when building the site.
@@ -12,6 +13,19 @@ export const query = graphql`{
     prismicHomepage {
         id
         data {
+          featured_post {
+            document {
+              ... on PrismicBlogPost {
+                id
+                url
+                data {
+                  ritchtext {
+                    raw
+                  }
+                }
+              }
+            }
+          }
           title {
             html
             text
@@ -49,6 +63,13 @@ export default ({ data: staticData, ...props}) => {
             <div>{data.title.text} From prismic</div>
             <p>What a world.</p>
             <img src="https://source.unsplash.com/random/400x200" alt="" />
+            <div>
+              <h2>Featured blog post</h2>
+              { data.featured_post.document ?
+                <RichText render={data.featured_post.document.data.ritchtext.raw} /> :
+                null
+              }
+            </div>
             <div>
               <h2>Blog</h2>
               <ul>
