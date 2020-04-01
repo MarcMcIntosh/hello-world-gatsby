@@ -29,7 +29,7 @@ export default (props) => {
     }`);
     console.log("footer");
 
-    const { data } = (window !== "undefined" && window.__PRISMIC_PREVIEW_DATA__ && window.__PRISMIC_PREVIEW_DATA__.prismicFooter) ? { ...staticData.prismicFooter, ...window.__PRISMIC_PREVIEW_DATA__.prismicFooter } : staticData.prismicFooter;
+    const { data } = (typeof window !== "undefined" && window.__PRISMIC_PREVIEW_DATA__ && window.__PRISMIC_PREVIEW_DATA__.prismicFooter) ? { ...staticData.prismicFooter, ...window.__PRISMIC_PREVIEW_DATA__.prismicFooter } : staticData.prismicFooter;
 
     console.log({ staticData, data });
 

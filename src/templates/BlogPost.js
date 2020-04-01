@@ -5,9 +5,8 @@ import { RichText } from "prismic-reactjs";
 
 
 export const query = graphql`
-    query($id: String!) {
-        prismicBlogPost(id: { eq: $id }) {
-            id
+    query($uid: String!) {
+        prismicBlogPost(uid: { eq: $uid }) {
             data {
                 ritchtext {
                     html
@@ -20,6 +19,7 @@ export const query = graphql`
 `
 
 const BlogPost = ({ data: staticData, ...props }) => {
+    console.log('----------blog props------------', props)
     const { prismicBlogPost: { data } } = (typeof window !== "undefined" && window.__PRISMIC_PREVIEW_DATA__) ? window.__PRISMIC_PREVIEW_DATA__ : staticData
 
     return (

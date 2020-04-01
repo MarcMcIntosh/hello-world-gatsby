@@ -53,7 +53,7 @@ export default ({ data: staticData, ...props}) => {
               <h2>Blog</h2>
               <ul>
               { staticData.allPrismicBlogPost.edges.map(e =>
-                <li key={e.node.id}><a href={e.node.url}>{e.node.url}</a></li>
+                <li key={e.node.id}><Link to={e.node.url}>{e.node.url}</Link></li>
               )}
               </ul>
             </div>
