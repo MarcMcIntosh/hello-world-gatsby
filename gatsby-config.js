@@ -30,7 +30,7 @@ module.exports = {
         // Example: 'gatsby-source-prismic-test-site' if your prismic.io address
         // is 'gatsby-source-prismic-test-site.prismic.io'.
         repositoryName: 'gatsby-hello',
-        // omitPrismicScript: true,
+        prismicScript: true,
 
         
         // An API access token to your prismic.io repository. This is required.
