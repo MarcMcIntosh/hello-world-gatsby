@@ -30,7 +30,7 @@ module.exports = {
         // Example: 'gatsby-source-prismic-test-site' if your prismic.io address
         // is 'gatsby-source-prismic-test-site.prismic.io'.
         repositoryName: 'gatsby-hello',
-        prismicScript: true,
+        prismicToolbar: true,
 
         
         // An API access token to your prismic.io repository. This is required.
@@ -69,7 +69,7 @@ module.exports = {
           children,
         ) => {
           // Your HTML serializer
-          console.log({ node, key, value, type, element, content, children });
+          // console.log({ node, key, value, type, element, content, children });
           return null;
         },
 
@@ -87,7 +87,7 @@ module.exports = {
         // Set a default language when fetching documents. The default value is
         // '*' which will fetch all languages.
         // See: https://prismic.io/docs/javascript/query-the-api/query-by-language
-        lang: '*',
+        lang: "*"
 
         // Set a function to determine if images are downloaded locally and made
         // available for gatsby-transformer-sharp for use with gatsby-image.
