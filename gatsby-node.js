@@ -33,6 +33,7 @@ exports.createPages = async ({ graphql, actions }) => {
           lang: node.lang,
           uid: node.uid,
         },
+        ...(process.env.NODE_ENV === "production" ? {} : { matchPath: `${prefix}/blog/*`}), 
       })
     })
   }
