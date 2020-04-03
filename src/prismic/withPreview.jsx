@@ -6,10 +6,10 @@ const IS_BROWSER = (typeof window !== "undefined")
 const GET_DEFAULT_STORE = () => (typeof window === "undefined") ? {} : window.__PRISMIC_PREVIEW_DATA__;
 
 
-export const withPreview = (Component, getStore = GET_DEFAULT_STORE) => (props) => {
+export const withPreview = (Component, getPreviewData = GET_DEFAULT_STORE) => (props) => {
 
     // make sure data is ccorrec
-    const store = getStore();
+    const store = getPreviewData();
     const path  = props.location ? props.location.pathname : props.data.path;
     
     console.log("withPreview", { props, store, path, IS_BROWSER });
