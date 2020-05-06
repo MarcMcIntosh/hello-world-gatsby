@@ -28,7 +28,7 @@ const PreviewPage = () => {
         //
         // We'll just put it on window.
         // Object.assign(window.__PRISMIC_PREVIEW_DATA__, previewData, {})
-        window.__PRISMIC_PREVIEW_DATA__ = { ...window.__PRISMIC_PREVIEW_DATA__, ...previewData, path }
+        window.__PRISMIC_PREVIEW_DATA__ = { ...window.__PRISMIC_PREVIEW_DATA__, ...previewData }
         console.log("preview pages")
         console.log({ previewData, path });
 
