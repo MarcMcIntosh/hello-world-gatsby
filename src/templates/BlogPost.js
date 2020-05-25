@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from "../components/layout";
 import { RichText } from "prismic-reactjs";
-import { withPreview } from '../prismic/withPreview';
+import usePreviewData from '../prismic/usePreviewData';
 
 export const query = graphql`
     query($id: String!) {
@@ -18,13 +18,15 @@ export const query = graphql`
     }
 `
 
-const BlogPost = (props) => {
-    console.log('----------blog props------------', { props })
+const BlogPost = ({ data }) => {
+    // console.log('----------blog props------------', { props })
+    const liveData = usePreviewData(data)
+    console.log('liveData', liveData)
     return (
         <Layout>
-            <RichText render={props.data.prismicBlogPost.data.ritchtext.raw} />
+            <RichText render={liveData.prismicBlogPost.data.ritchtext.raw} />
         </Layout>
     )
 }
 
-export default withPreview(BlogPost);
+export default BlogPost
