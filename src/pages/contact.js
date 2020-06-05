@@ -8,20 +8,41 @@ export const query = graphql`query {
         id
         data {
             title {
-                html
                 text
-                raw
+            }
+            body {
+                ... on PrismicContactBodyTeam {
+                      items {
+                        first_and_lastname {
+                          text
+                        }
+                        position {
+                          text
+                        }
+                    }
+                }
             }
         }
     }
 }`
 
 
-export default ({ data }) => (
-    <Layout>
-        <Header headerText={data.prismicContact.data.title.text} />
-        
-        <p>Send us a message!</p>
-        <b>{/*Slices don't work?*/}</b>
-    </Layout>
-)
+export default ({ data }) => {
+  return (
+      <Layout>
+          <Header headerText={data.prismicContact.data.title.text} />
+
+          <p>Send us a message!</p>
+          <ul>
+            {data.prismicContact.data.body[0].items.map(item => {
+              return (
+                <li key={item.first_and_lastname.text}>
+                  <b>{item.first_and_lastname.text}</b>
+                  <p>{item.position.text}</p>
+                </li>
+              )
+            })}
+          </ul>
+      </Layout>
+  )
+}

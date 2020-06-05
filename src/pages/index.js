@@ -1,12 +1,12 @@
 import React from "react"
 import { graphql, Link } from 'gatsby';
+import { withPreview } from 'gatsby-source-prismic'
 import Layout from "../components/layout"
 import Header from '../components/header'
 import { RichText } from "prismic-reactjs";
-import usePreviewData from '../prismic/usePreviewData';
 
 export const query = graphql`{
-    prismicHomepage {
+    prismicHomepage(lang: { eq: "en-gb" }) {
         id
         data {
           featured_post {
@@ -38,16 +38,14 @@ export const query = graphql`{
     }
 }`;
 
-export default ({ data }) => {
-    const liveData = usePreviewData(data)
-    const homePageData = liveData.prismicHomepage.data
+const HomePage = ({ data }) => {
+    const homePageData = data.prismicHomepage.data
 
     return (
         <Layout>
             <Link to="/contact/">Contact</Link>
             <Header headerText="Hello Gatsby!" />
             <div>{homePageData.title.text}</div>
-            <p>What a world.</p>
             <img src="https://source.unsplash.com/random/400x200" alt="" />
             <div>
               <h2>Featured blog post</h2>
@@ -67,3 +65,5 @@ export default ({ data }) => {
         </Layout>
     )
 }
+
+export default withPreview(HomePage)
